@@ -1,0 +1,7 @@
+server:
+   servlet:
+    context-path: /mcs-actualiza-indicadores/
+    
+spring:
+  aop:
+    proxy-target-class: true
