@@ -671,7 +671,7 @@
     </partitioning>
     <connection>SybaseMinjusConnection</connection>
     <sql>
-SELECT TOP 100
+SELECT 
 	con_dj.nombre                                                       as 	CON_DISTRITOJUDICIAL,
 	con_s.nombre                                                        as 	CON_SEDE,
 	con_d.apellido_paterno+' '+con_d.apellido_materno+' '+con_d.nombres as 	CON_DEFENSOR,
@@ -730,7 +730,8 @@ from
 							inner join dbo.consulta_materia cm 
 							on cm.consultamateria_id = cdm.consultamateria_id 
 where
-	(cd.fecha >= ${FECHA_INICIO}) and
+    (cd.fecha >= ${FECHA_INICIO}) and
+	--(cd.fecha >= '2021-01-01') and
 	(cd.vigente ='S') 
 	</sql>
     <limit>0</limit>

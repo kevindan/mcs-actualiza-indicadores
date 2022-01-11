@@ -1029,7 +1029,8 @@ where
 	(pdi.flg_cierrebd ='C') and
 	(drs.flg_cierrebd ='C') and
         
-	(pdi.fecha BETWEEN ${FECHA_INICIO} AND ${FECHA_CIERRE})</sql>
+	(pdi.fecha BETWEEN ${FECHA_INICIO} AND ${FECHA_CIERRE})
+	--(pdi.fecha BETWEEN '2021-01-01' AND ${FECHA_CIERRE})</sql>
     <limit>0</limit>
     <lookup />
     <execute_each_row>N</execute_each_row>

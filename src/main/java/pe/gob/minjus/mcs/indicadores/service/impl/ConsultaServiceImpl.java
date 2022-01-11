@@ -388,7 +388,6 @@ public class ConsultaServiceImpl implements ConsultaService {
 				trans.setParameterValue("FECHA_INICIO", "'"+fechaInicio+"'");
 			}
 
-			
 			trans.setLogLevel(LogLevel.DEBUG);
 			trans.execute(null);
 			trans.waitUntilFinished();

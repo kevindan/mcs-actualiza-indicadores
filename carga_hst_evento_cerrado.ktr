@@ -760,7 +760,8 @@ from
 					on distritojudicial.distritojudicial_id = e.
 					distritojudicial_id 
 where
-	(e.fechaevento >= ${FECHA_INICIO} and e.fechaevento &lt;= ${FECHA_CIERRE}) 
+	(e.fechaevento >= ${FECHA_INICIO} and e.fechaevento &lt;= ${FECHA_CIERRE})
+	--(e.fechaevento >= '2021-01-01' and e.fechaevento &lt;= ${FECHA_CIERRE}) 
 	and	(e.vigente ='S') 
 	and (e.flg_cierrebd ='C')</sql>
     <limit>0</limit>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>carga_indi_diligencia_libre_diario</name>
+    <name>carga_hst_patrocinio_delito_cerrado</name>
     <description />
     <extended_description />
     <trans_version />
@@ -10,9 +10,14 @@
     <directory>/</directory>
     <parameters>
       <parameter>
+        <name>FECHA_CIERRE</name>
+        <default_value>2021-01-01</default_value>
+        <description>Fecha de cierre de la consulta</description>
+      </parameter>
+      <parameter>
         <name>FECHA_INICIO</name>
         <default_value>2021-01-01</default_value>
-        <description>Fecha de inicio del mes actual</description>
+        <description>Fecha de inicio del mes anterior</description>
       </parameter>
     </parameters>
     <log>
@@ -433,9 +438,9 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2022/01/08 00:27:45.975</created_date>
+    <created_date>2021/12/22 11:07:49.444</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/01/08 00:27:45.975</modified_date>
+    <modified_date>2021/12/22 11:07:49.444</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -455,6 +460,14 @@
     <index_tablespace />
     <attributes>
       <attribute>
+        <code>EXTRA_OPTION_MYSQL.defaultFetchSize</code>
+        <attribute>500</attribute>
+      </attribute>
+      <attribute>
+        <code>EXTRA_OPTION_MYSQL.useCursorFetch</code>
+        <attribute>true</attribute>
+      </attribute>
+      <attribute>
         <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
         <attribute>N</attribute>
       </attribute>
@@ -472,7 +485,7 @@
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
-        <attribute>Y</attribute>
+        <attribute>N</attribute>
       </attribute>
       <attribute>
         <code>QUOTE_ALL_FIELDS</code>
@@ -527,7 +540,7 @@
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
-        <attribute>Y</attribute>
+        <attribute>N</attribute>
       </attribute>
       <attribute>
         <code>QUOTE_ALL_FIELDS</code>
@@ -549,18 +562,18 @@
   </connection>
   <order>
     <hop>
-      <from>OrigenIndiDiligenciaLibreDiario</from>
-      <to>DestinoIndiDiligenciaLibreDiario</to>
+      <from>OrigenHstPatrocinioDelitoCerrado</from>
+      <to>DestinoHstPatrocinioDelitoCerrado</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>DestinoIndiDiligenciaLibreDiario</from>
+      <from>DestinoHstPatrocinioDelitoCerrado</from>
       <to>Write to log</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>DestinoIndiDiligenciaLibreDiario</name>
+    <name>DestinoHstPatrocinioDelitoCerrado</name>
     <type>TableOutput</type>
     <description />
     <distribute>Y</distribute>
@@ -572,7 +585,7 @@
     </partitioning>
     <connection>MySQLMinjusConnection</connection>
     <schema />
-    <table>indi_diligencia_libre_diario</table>
+    <table>hst_patrocinio_delito_cerrado</table>
     <commit>1000</commit>
     <truncate>N</truncate>
     <ignore_errors>N</ignore_errors>
@@ -589,16 +602,116 @@
     <return_field />
     <fields>
       <field>
+        <column_name>CAS_COD</column_name>
+        <stream_name>CAS_COD</stream_name>
+      </field>
+      <field>
+        <column_name>CAS_DISTRITOJUDICIAL</column_name>
+        <stream_name>CAS_DISTRITOJUDICIAL</stream_name>
+      </field>
+      <field>
+        <column_name>CAS_SEDE</column_name>
+        <stream_name>CAS_SEDE</stream_name>
+      </field>
+      <field>
+        <column_name>CAS_NATURALEZA</column_name>
+        <stream_name>CAS_NATURALEZA</stream_name>
+      </field>
+      <field>
+        <column_name>CAS_UBICACION</column_name>
+        <stream_name>CAS_UBICACION</stream_name>
+      </field>
+      <field>
+        <column_name>CAS_CODIGO</column_name>
+        <stream_name>CAS_CODIGO</stream_name>
+      </field>
+      <field>
+        <column_name>CAS_DEFENSOR</column_name>
+        <stream_name>CAS_DEFENSOR</stream_name>
+      </field>
+      <field>
+        <column_name>CAS_FACHAINICIO</column_name>
+        <stream_name>CAS_FACHAINICIO</stream_name>
+      </field>
+      <field>
+        <column_name>PNI_COD</column_name>
+        <stream_name>PNI_COD</stream_name>
+      </field>
+      <field>
+        <column_name>PNI_TIPOPROCESO</column_name>
+        <stream_name>PNI_TIPOPROCESO</stream_name>
+      </field>
+      <field>
+        <column_name>PNI_PATROCINADO_COD</column_name>
+        <stream_name>PNI_PATROCINADO_COD</stream_name>
+      </field>
+      <field>
+        <column_name>PNI_PATROCINADO</column_name>
+        <stream_name>PNI_PATROCINADO</stream_name>
+      </field>
+      <field>
+        <column_name>PNI_PATROCINADO_SEXO</column_name>
+        <stream_name>PNI_PATROCINADO_SEXO</stream_name>
+      </field>
+      <field>
+        <column_name>PNI_PATROCINADO_DISCAPACIDAD</column_name>
+        <stream_name>PNI_PATROCINADO_DISCAPACIDAD</stream_name>
+      </field>
+      <field>
+        <column_name>PNI_PATROCINADO_DISCAPACIDADEQUI</column_name>
+        <stream_name>PNI_PATROCINADO_DISCAPACIDADEQUI</stream_name>
+      </field>
+      <field>
+        <column_name>PNI_PATROCINADO_EDAD</column_name>
+        <stream_name>PNI_PATROCINADO_EDAD</stream_name>
+      </field>
+      <field>
+        <column_name>PNI_PATROCINADO_RANGOEDAD</column_name>
+        <stream_name>PNI_PATROCINADO_RANGOEDAD</stream_name>
+      </field>
+      <field>
+        <column_name>PNI_SITUACIONJURIDICA</column_name>
+        <stream_name>PNI_SITUACIONJURIDICA</stream_name>
+      </field>
+      <field>
+        <column_name>PNI_GRUPOSERVICIO</column_name>
+        <stream_name>PNI_GRUPOSERVICIO</stream_name>
+      </field>
+      <field>
+        <column_name>PNI_DEFENSOR</column_name>
+        <stream_name>PNI_DEFENSOR</stream_name>
+      </field>
+      <field>
+        <column_name>PNI_FECHAAPERTURA_ANIO</column_name>
+        <stream_name>PNI_FECHAAPERTURA_ANIO</stream_name>
+      </field>
+      <field>
+        <column_name>PNI_FECHAAPERTURA_MESNUM</column_name>
+        <stream_name>PNI_FECHAAPERTURA_MESNUM</stream_name>
+      </field>
+      <field>
+        <column_name>PNI_FECHAAPERTURA_MESNOM</column_name>
+        <stream_name>PNI_FECHAAPERTURA_MESNOM</stream_name>
+      </field>
+      <field>
+        <column_name>PNI_TIPOFICHA</column_name>
+        <stream_name>PNI_TIPOFICHA</stream_name>
+      </field>
+      <field>
+        <column_name>PNI_COMUNIDADNATIVA</column_name>
+        <stream_name>PNI_COMUNIDADNATIVA</stream_name>
+      </field>
+      <field>
+        <column_name>PNI_DELITO_COD</column_name>
+        <stream_name>PNI_DELITO_COD</stream_name>
+      </field>
+      <field>
+        <column_name>PNI_DELITO</column_name>
+        <stream_name>PNI_DELITO</stream_name>
+      </field>
+      <field>
         <column_name>PDI_COD</column_name>
         <stream_name>PDI_COD</stream_name>
-      </field>
-      <field>
-        <column_name>PDI_PATROCINADO</column_name>
-        <stream_name>PDI_PATROCINADO</stream_name>
-      </field>
-      <field>
-        <column_name>PDI_PATROCINADO_SEXO</column_name>
-        <stream_name>PDI_PATROCINADO_SEXO</stream_name>
       </field>
       <field>
         <column_name>PDI_TIPODILIGENCIA</column_name>
@@ -641,10 +754,6 @@
         <stream_name>PDI_FECHA_MESNOM</stream_name>
       </field>
       <field>
-        <column_name>PDI_FECHA</column_name>
-        <stream_name>PDI_FECHA</stream_name>
-      </field>
-      <field>
         <column_name>PDI_ORIGENREQ</column_name>
         <stream_name>PDI_ORIGENREQ</stream_name>
       </field>
@@ -681,20 +790,72 @@
         <stream_name>DRS_FECHA_MESNOM</stream_name>
       </field>
       <field>
-        <column_name>PDI_TIPODILIGENCIA_ID</column_name>
-        <stream_name>PDI_TIPODILIGENCIA_ID</stream_name>
+        <column_name>CAS_distritojudicial_id</column_name>
+        <stream_name>CAS_distritojudicial_id</stream_name>
       </field>
       <field>
-        <column_name>PDI_DISTRITOJUDICIAL_ID</column_name>
-        <stream_name>PDI_DISTRITOJUDICIAL_ID</stream_name>
+        <column_name>CAS_sede_id</column_name>
+        <stream_name>CAS_sede_id</stream_name>
       </field>
       <field>
-        <column_name>PDI_SEDE_ID</column_name>
-        <stream_name>PDI_SEDE_ID</stream_name>
+        <column_name>CAS_naturaleza_id</column_name>
+        <stream_name>CAS_naturaleza_id</stream_name>
+      </field>
+      <field>
+        <column_name>CAS_ubicacion_id</column_name>
+        <stream_name>CAS_ubicacion_id</stream_name>
+      </field>
+      <field>
+        <column_name>PDI_tipodiligencia_id</column_name>
+        <stream_name>PDI_tipodiligencia_id</stream_name>
+      </field>
+      <field>
+        <column_name>PDI_diligencia_id</column_name>
+        <stream_name>PDI_diligencia_id</stream_name>
+      </field>
+      <field>
+        <column_name>PDI_situacionjuridica_id</column_name>
+        <stream_name>PDI_situacionjuridica_id</stream_name>
+      </field>
+      <field>
+        <column_name>PDI_distritojudicial_id</column_name>
+        <stream_name>PDI_distritojudicial_id</stream_name>
+      </field>
+      <field>
+        <column_name>PDI_sede_id</column_name>
+        <stream_name>PDI_sede_id</stream_name>
+      </field>
+      <field>
+        <column_name>PDI_tipoficha_id</column_name>
+        <stream_name>PDI_tipoficha_id</stream_name>
+      </field>
+      <field>
+        <column_name>PDI_etapaprocesal_id</column_name>
+        <stream_name>PDI_etapaprocesal_id</stream_name>
+      </field>
+      <field>
+        <column_name>PDI_ubicacion_id</column_name>
+        <stream_name>PDI_ubicacion_id</stream_name>
+      </field>
+      <field>
+        <column_name>PNI_tipoficha_id</column_name>
+        <stream_name>PNI_tipoficha_id</stream_name>
+      </field>
+      <field>
+        <column_name>PNI_tipoproceso_id</column_name>
+        <stream_name>PNI_tipoproceso_id</stream_name>
       </field>
       <field>
         <column_name>PDI_GRUPOSERVICIO_ID</column_name>
         <stream_name>PDI_GRUPOSERVICIO_ID</stream_name>
+      </field>
+      <field>
+        <column_name>PNI_GRUPOSERVICIO_ID</column_name>
+        <stream_name>PNI_GRUPOSERVICIO_ID</stream_name>
+      </field>
+      <field>
+        <column_name>PNI_fecha_apertura</column_name>
+        <stream_name>fecha_apertura</stream_name>
       </field>
     </fields>
     <cluster_schema />
@@ -705,16 +866,16 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>528</xloc>
-      <yloc>208</yloc>
+      <xloc>640</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>OrigenIndiDiligenciaLibreDiario</name>
+    <name>OrigenHstPatrocinioDelitoCerrado</name>
     <type>TableInput</type>
     <description />
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution />
     <copies>1</copies>
     <partitioning>
@@ -723,10 +884,191 @@
     </partitioning>
     <connection>SybaseMinjusConnection</connection>
     <sql>select
+	cas.caso_id                                                            as 	CAS_COD,
+	cas_dj.nombre                                                          as 	CAS_DISTRITOJUDICIAL,
+	cas_s.nombre                                                           as 	CAS_SEDE,
+	cas_n.nombre                                                           as 	CAS_NATURALEZA,
+	cas_u.nombre                                                           as 	CAS_UBICACION,
+	cas.codigo                                                             as 	CAS_CODIGO,
+	cas_d.apellido_paterno+' '+cas_d.apellido_materno+' '+cas_d.nombres    as 	CAS_DEFENSOR,
+	cas.fecha_inicio                                                       as 	CAS_FACHAINICIO,
+	pni.patrocinio_id                                                      as 	PNI_COD,
+	pni_tp.nombre                                                          as 	PNI_TIPOPROCESO,
+	pdo.patrocinado_id                                                     as 	PNI_PATROCINADO_COD,
+	pdo.apellido_paterno+' '+pdo.apellido_materno+' '+pdo.nombres          as 	PNI_PATROCINADO,
+	pdo_sx.descripcion                                                     as 	PNI_PATROCINADO_SEXO,
+	pdo_dad.nombre                                                         as 	PNI_PATROCINADO_DISCAPACIDAD,
+	(
+	CASE pdo_dad.discapacidad_id 
+		WHEN 0 
+		THEN 'SIN DISCAPACIDAD' 
+		WHEN 2 
+		THEN 'D.VERBAL' 
+		WHEN 3 
+		THEN 'D.VISUAL' 
+		WHEN 4 
+		THEN 'D.AUDITIVA' 
+		WHEN 6 
+		THEN 'D.PSICOMOTRIZ' 
+		WHEN 7 
+		THEN 'ENFERMEDAD MENTAL' 
+		ELSE 'SIN_DISCAPACIDAD' 
+	END)                                                                   as 	PNI_PATROCINADO_DISCAPACIDADEQUI,
+	datediff(dd,pdo.fecha_nacimiento,pni.fecha_apertura)/365               as 	PNI_PATROCINADO_EDAD,
+	CASE 
+		when (datediff(dd,pdo.fecha_nacimiento,pni.fecha_apertura)/365)&lt;000 
+		then 'Menor a 0 anios' 
+		when (datediff(dd,pdo.fecha_nacimiento,pni.fecha_apertura)/365)>=00 and
+		(datediff(dd,pdo.fecha_nacimiento,pni.fecha_apertura)/365)&lt;=05 
+		then 'De 0 a 5 anios' 
+		when (datediff(dd,pdo.fecha_nacimiento,pni.fecha_apertura)/365)>=06 and
+		(datediff(dd,pdo.fecha_nacimiento,pni.fecha_apertura)/365)&lt;=11 
+		then 'De 6 a 11 anios' 
+		when (datediff(dd,pdo.fecha_nacimiento,pni.fecha_apertura)/365)>=12 and
+		(datediff(dd,pdo.fecha_nacimiento,pni.fecha_apertura)/365)&lt;=17 
+		then 'De 12 a 17 anios' 
+		when (datediff(dd,pdo.fecha_nacimiento,pni.fecha_apertura)/365)>=18 and
+		(datediff(dd,pdo.fecha_nacimiento,pni.fecha_apertura)/365)&lt;=29 
+		then 'De 18 a 29 anios' 
+		when (datediff(dd,pdo.fecha_nacimiento,pni.fecha_apertura)/365)>=30 and
+		(datediff(dd,pdo.fecha_nacimiento,pni.fecha_apertura)/365)&lt;=39 
+		then 'De 30 a 39 anios' 
+		when (datediff(dd,pdo.fecha_nacimiento,pni.fecha_apertura)/365)>=40 and
+		(datediff(dd,pdo.fecha_nacimiento,pni.fecha_apertura)/365)&lt;=49 
+		then 'De 40 a 49 anios' 
+		when (datediff(dd,pdo.fecha_nacimiento,pni.fecha_apertura)/365)>=50 and
+		(datediff(dd,pdo.fecha_nacimiento,pni.fecha_apertura)/365)&lt;=59 
+		then 'De 50 a 59 anios' 
+		when (datediff(dd,pdo.fecha_nacimiento,pni.fecha_apertura)/365)>=60 and
+		(datediff(dd,pdo.fecha_nacimiento,pni.fecha_apertura)/365)&lt;=69 
+		then 'De 60 a 69 anios' 
+		when (datediff(dd,pdo.fecha_nacimiento,pni.fecha_apertura)/365)>=70 and
+		(datediff(dd,pdo.fecha_nacimiento,pni.fecha_apertura)/365)&lt;=79 
+		then 'De 70 a 79 anios' 
+		when (datediff(dd,pdo.fecha_nacimiento,pni.fecha_apertura)/365)>=80 and
+		(datediff(dd,pdo.fecha_nacimiento,pni.fecha_apertura)/365)&lt;=89 
+		then 'De 80 a 89 anios' 
+		when (datediff(dd,pdo.fecha_nacimiento,pni.fecha_apertura)/365)>=90 and
+		(datediff(dd,pdo.fecha_nacimiento,pni.fecha_apertura)/365)&lt;=99 
+		then 'De 90 a 99 anios' 
+		when (datediff(dd,pdo.fecha_nacimiento,pni.fecha_apertura)/365)>=100 
+		then 'De 100 a mas anios' 
+		else 'ERROR' 
+	END                                                                        
+	as PNI_PATROCINADO_RANGOEDAD,
+	pni_sj.nombre                                                          as 	PNI_SITUACIONJURIDICA,
+		CASE (pni.situacionjuridica_id) 
+		WHEN 11 
+		THEN 'DEFENSA PENAL' 
+		WHEN 12 
+		THEN 'DEFENSA PENAL' 
+		WHEN 13 
+		THEN 'DEFENSA PENAL' 
+		WHEN 14 
+		THEN 'DEFENSA PENAL' 
+		WHEN 15 
+		THEN 'DEFENSA PENAL' 
+		WHEN 16 
+		THEN 'DEFENSA PENAL' 
+		WHEN 17 
+		THEN 'DEFENSA PENAL' 
+		WHEN 18 
+		THEN 'DEFENSA PENAL' 
+		WHEN 19 
+		THEN 'DEFENSA PENAL' 
+		WHEN 20 
+		THEN 'DEFENSA DE VICTIMAS' 
+		WHEN 22 
+		THEN 'DEFENSA PENAL' 
+		WHEN 23 
+		THEN 'DEFENSA PENAL' 
+		WHEN 24 
+		THEN 'DEFENSA DE VICTIMAS' 
+		WHEN 25 
+		THEN 'DEFENSA PENAL' 
+		WHEN 26 
+		THEN 'DEFENSA PENAL' 
+		WHEN 27 
+		THEN 'DEFENSA PENAL' 
+		WHEN 28 
+		THEN 'DEFENSA PENAL' 
+		WHEN 29 
+		THEN 'DEFENSA PENAL' 
+		WHEN 30 
+		THEN 'ASISTENCIA LEGAL' 
+		WHEN 31 
+		THEN 'ASISTENCIA LEGAL' 
+		WHEN 32 
+		THEN 'DEFENSA PENAL' 
+		WHEN 33 
+		THEN 'DEFENSA PENAL' 
+		WHEN 34 
+		THEN 'DEFENSA PENAL' 
+		WHEN 35 
+		THEN 'ASISTENCIA LEGAL' 
+		WHEN 36 
+		THEN 'ASISTENCIA LEGAL' 
+		WHEN 37 
+		THEN 'ASISTENCIA LEGAL' 
+		WHEN 38 
+		THEN 'DEFENSA DE VICTIMAS' 
+		WHEN 39 
+		THEN 'DEFENSA PENAL' 
+		WHEN 40 
+		THEN 'DEFENSA PENAL' 
+		WHEN 42 
+		THEN 'ASISTENCIA LEGAL' 
+		WHEN 43 
+		THEN 'DEFENSA DE VICTIMAS' 
+		WHEN 44 
+		THEN 'DEFENSA PENAL' 
+		WHEN 45 
+		THEN 'DEFENSA PENAL' 
+		WHEN 46 
+		THEN 'DEFENSA PENAL' 
+		WHEN 47 
+		THEN 'DEFENSA DE VICTIMAS' 
+		WHEN 48 
+		THEN 'DEFENSA DE VICTIMAS' 
+		ELSE 'SIN_GRUPO' 
+	END                                                                        
+	as PNI_GRUPOSERVICIO,
+	pni_d.apellido_paterno+' '+pni_d.apellido_materno+' '+pni_d.nombres    as 	PNI_DEFENSOR,
+	year(pni.fecha_apertura)                                               as 	PNI_FECHAAPERTURA_ANIO,
+	month(pni.fecha_apertura)                                              as 	PNI_FECHAAPERTURA_MESNUM,
+	(
+	CASE month(pni.fecha_apertura) 
+		WHEN 1 
+		THEN '01-ENE' 
+		WHEN 2 
+		THEN '02-FEB' 
+		WHEN 3 
+		THEN '03-MAR' 
+		WHEN 4 
+		THEN '04-ABR' 
+		WHEN 5 
+		THEN '05-MAY' 
+		WHEN 6 
+		THEN '06-JUN' 
+		WHEN 7 
+		THEN '07-JUL' 
+		WHEN 8 
+		THEN '08-AGO' 
+		WHEN 9 
+		THEN '09-SEP' 
+		WHEN 10 
+		THEN '10-OCT' 
+		WHEN 11 
+		THEN '11-NOV' 
+		WHEN 12 
+		THEN '12-DIC' 
+		ELSE 'SIN_MES' 
+	END)                                                                   as 	PNI_FECHAAPERTURA_MESNOM,
+	pni_tf.nombre                                                          as 	PNI_TIPOFICHA,
+	pni.comunidad_nativa                                                   as 	PNI_COMUNIDADNATIVA,
+	pde.delito_id                                                          as 	PNI_DELITO_COD,
+	pni_del.nombre                                                         as 	PNI_DELITO,
 	pdi.patrociniodiligencia_id                                            as 	PDI_COD,
-	pdo.apellido_paterno+' '+pdo.apellido_materno+' '+pdo.nombres          as 	PDI_PATROCINADO,
-	
-	pdo_sx.descripcion                                                     as 	PDI_PATROCINADO_SEXO,
 	pdi_td.nombre                                                          as 	PDI_TIPODILIGENCIA,
 	pdi_d.nombre                                                           as 	PDI_DILIGENCIA,
 	pdi_sj.nombre                                                          as 	PDI_SITUACIONJURIDICA,
@@ -839,7 +1181,6 @@
 		THEN '12-DIC' 
 		ELSE 'SIN_MES' 
 	END)                                                                   as 	PDI_FECHA_MESNOM,
-	pdi.fecha                                                              as 	PDI_FECHA,
 	pdi_or.nombre                                                          as 	PDI_ORIGENREQ,
 	pdi_tf.nombre                                                          as 	PDI_TIPOFICHA,
 	pdi_ep.descripcion                                                     as 	PDI_ETAPAPROCESAL,
@@ -875,12 +1216,23 @@
 		WHEN 12 
 		THEN '12-DIC' 
 		ELSE 'SIN_MES' 
-	END)                                                              as 	DRS_FECHA_MESNOM,
-	
-	 pdi_td.tipodiligencia_id  AS  PDI_TIPODILIGENCIA_ID,
-	 pdi_dj.distritojudicial_id AS PDI_DISTRITOJUDICIAL_ID,
-	 pdi_s.sede_id AS  PDI_SEDE_ID,
-	 	CASE (pdi.situacionjuridica_id) 
+	END)as 	DRS_FECHA_MESNOM,
+	pni.fecha_apertura,
+	cas_dj.distritojudicial_id as CAS_distritojudicial_id,
+	cas_s.sede_id as  CAS_sede_id,
+	cas_n.naturaleza_id as CAS_naturaleza_id,
+	cas_u.ubicacion_id as  CAS_ubicacion_id,
+	pdi_td.tipodiligencia_id  AS  PDI_tipodiligencia_id,
+	pdi_d.diligencia_id  AS PDI_diligencia_id,
+	pdi_sj.situacionjuridica_id AS PDI_situacionjuridica_id,
+    pdi_dj.distritojudicial_id AS PDI_distritojudicial_id,
+    pdi_s.sede_id AS PDI_sede_id,
+	pdi_tf.tipoficha_id AS PDI_tipoficha_id,
+   	pdi_ep.etapaprocesal_id  AS PDI_etapaprocesal_id,
+	pdi_u.ubicacion_id  AS PDI_ubicacion_id,
+	pni_tf.tipoficha_id  AS PNI_tipoficha_id,
+	pni_tp.tipoproceso_id  AS PNI_tipoproceso_id,
+	CASE (pdi.situacionjuridica_id) 
 		WHEN 11 
 		THEN '1' 
 		WHEN 12 
@@ -955,68 +1307,314 @@
 		THEN '2' 
 		ELSE 'XX' 
 	END                                                                        
-	as PDI_GRUPOSERVICIO_ID
+	as PDI_GRUPOSERVICIO_ID,
+		CASE (pni.situacionjuridica_id) 
+		WHEN 11 
+		THEN '1' 
+		WHEN 12 
+		THEN '1' 
+		WHEN 13 
+		THEN '1' 
+		WHEN 14 
+		THEN '1' 
+		WHEN 15 
+		THEN '1' 
+		WHEN 16 
+		THEN '1' 
+		WHEN 17 
+		THEN '1' 
+		WHEN 18 
+		THEN '1' 
+		WHEN 19 
+		THEN '1' 
+		WHEN 20 
+		THEN '2' 
+		WHEN 22 
+		THEN '1' 
+		WHEN 23 
+		THEN '1' 
+		WHEN 24 
+		THEN '2' 
+		WHEN 25 
+		THEN '1' 
+		WHEN 26 
+		THEN '1' 
+		WHEN 27 
+		THEN '1' 
+		WHEN 28 
+		THEN '1' 
+		WHEN 29 
+		THEN '1' 
+		WHEN 30 
+		THEN '3' 
+		WHEN 31 
+		THEN '3' 
+		WHEN 32 
+		THEN '1' 
+		WHEN 33 
+		THEN '1' 
+		WHEN 34 
+		THEN '1' 
+		WHEN 35 
+		THEN '3' 
+		WHEN 36 
+		THEN '3' 
+		WHEN 37 
+		THEN '3' 
+		WHEN 38 
+		THEN '2' 
+		WHEN 39 
+		THEN '1' 
+		WHEN 40 
+		THEN '1' 
+		WHEN 42 
+		THEN '3' 
+		WHEN 43 
+		THEN '2' 
+		WHEN 44 
+		THEN '1' 
+		WHEN 45 
+		THEN '1' 
+		WHEN 46 
+		THEN '1' 
+		WHEN 47 
+		THEN '2' 
+		WHEN 48 
+		THEN '2' 
+		ELSE 'XX' 
+	END                                                                        
+	as PNI_GRUPOSERVICIO_ID
 	 
 from
-	dbo.diligencia pdi_d 
+	dbo.situacion_juridica pdi_sj 
 		inner join dbo.patrocinio_diligencia pdi 
-		on pdi_d.diligencia_id = pdi.diligencia_id 
-			inner join dbo.v_listadopersonal pdi_do 
-			on pdi_do.personal_id = pdi.defensor_id 
-				inner join dbo.tipo_ficha pdi_tf 
-				on pdi_tf.tipoficha_id = pdi.tipoficha_id 
-					inner join dbo.patrocinado pdo 
-					on pdo.patrocinado_id = pdi.patrocinado_id 
-						inner join dbo.v_sexo pdo_sx 
-						on pdo_sx.sexo_id = pdo.sexo 
-							inner join dbo.situacion_juridica pdi_sj 
-							on pdi_sj.situacionjuridica_id = pdi.
-							situacionjuridica_id 
-								inner join dbo.tipo_diligencia pdi_td 
-								on pdi_td.tipodiligencia_id = pdi.
-								tipodiligencia_id 
-									inner join dbo.etapa_procesal pdi_ep 
-									on pdi_ep.etapaprocesal_id = pdi.
-									etapaprocesal_id 
-										inner join dbo.distritojudicial pdi_dj 
-										on pdi_dj.distritojudicial_id = pdi.
-										distritojudicial_id 
-											inner join dbo.sede pdi_s 
-											on pdi_s.sede_id = pdi.sede_id 
-												inner join dbo.ubicacion pdi_u 
-												on pdi_u.ubicacion_id = pdi.
-												ubicacion_id 
+		on pdi_sj.situacionjuridica_id = pdi.situacionjuridica_id 
+			inner join dbo.ubicacion pdi_u 
+			on pdi_u.ubicacion_id = pdi.ubicacion_id 
+				inner join dbo.patrocinio pni 
+				on pni.patrocinio_id = pdi.patrocinio_id 
+					inner join dbo.tipo_ficha pni_tf 
+					on pni_tf.tipoficha_id = pni.tipoficha_id 
+						inner join dbo.v_listadopersonal pni_d 
+						on pni_d.personal_id = pni.defensor_id 
+							inner join dbo.patrocinado pdo 
+							on pdo.patrocinado_id = pni.patrocinado_id 
+								inner join dbo.discapacidad pdo_dad 
+								on pdo_dad.discapacidad_id = pdo.discapacidad_id 
+									inner join dbo.v_sexo pdo_sx 
+									on pdo_sx.sexo_id = pdo.sexo 
+										inner join dbo.tipo_proceso pni_tp 
+										on pni_tp.tipoproceso_id = pni.
+										tipoproceso_id 
+											inner join dbo.caso cas 
+											on cas.caso_id = pni.caso_id 
+												inner join dbo.sede cas_s 
+												on cas_s.distritojudicial_id = 
+												cas.distritojudicial_id and
+												cas_s.sede_id = cas.sede_id 
 													inner join dbo.
-													origenusuario_diligencia 
-													pdi_or 
-													on pdi_or.
-													origenusuariodiligencia_id = 
-													pdi.
-													origenusuariodiligencia_id 
+													distritojudicial cas_dj 
+													on cas_dj.
+													distritojudicial_id = cas_s.
+													distritojudicial_id 
 														inner join dbo.
-														diligencia_resultado drs 
-														on pdi.
-														patrociniodiligencia_id 
-														= drs.
-														patrociniodiligencia_id 
+														v_listadopersonal cas_d 
+														on cas_d.personal_id = 
+														cas.defensor_id 
 															inner join dbo.
-															resultado drs_r 
-															on drs_r.
-															resultado_id = drs.
-															resultado_id 
+															ubicacion cas_u 
+															on cas_u.
+															ubicacion_id = cas.
+															ubicacion_id 
+																inner join dbo.
+																naturaleza cas_n 
+																on cas_n.
+																naturaleza_id = 
+																cas.
+																naturaleza_id 
+																	inner join 
+																	dbo.
+																	situacion_juridica 
+																	pni_sj 
+																	on pni_sj.
+																	situacionjuridica_id 
+																	= pni.
+																	situacionjuridica_id 
+																		inner 
+																		join dbo
+																		.
+																		patrocinio_delito 
+																		pde 
+																		on pni.
+																		patrocinio_id 
+																		= pde.
+																		patrocinio_id 
+																			inner 
+																			join 
+																			dbo.
+																			delito 
+																			pni_del 
+																			on 
+																			pni_del
+																			.
+																			delito_id 
+																			= 
+																			pde.
+																			delito_id 
+																				inner 
+																				join 
+																				dbo
+																				.
+																				diligencia 
+																				pdi_d 
+																				on 
+																				pdi_d
+																				.
+																				diligencia_id 
+																				= 
+																				pdi
+																				.
+																				diligencia_id 
+																					inner 
+																					join 
+																					dbo
+																					.
+																					sede 
+																					pdi_s 
+																					on 
+																					pdi_s
+																					.
+																					sede_id 
+																					= 
+																					pdi
+																					.
+																					sede_id 
+																						inner 
+																						join 
+																						dbo
+																						.
+																						v_listadopersonal 
+																						pdi_do 
+																						on 
+																						pdi_do
+																						.
+																						personal_id 
+																						= 
+																						pdi
+																						.
+																						defensor_id 
+																							inner 
+																							join 
+																							dbo
+																							.
+																							tipo_ficha 
+																							pdi_tf 
+																							on 
+																							pdi_tf
+																							.
+																							tipoficha_id 
+																							= 
+																							pdi
+																							.
+																							tipoficha_id 
+																								inner 
+																								join 
+																								dbo
+																								.
+																								etapa_procesal 
+																								pdi_ep 
+																								on 
+																								pdi_ep
+																								.
+																								etapaprocesal_id 
+																								= 
+																								pdi
+																								.
+																								etapaprocesal_id 
+																									inner 
+																									join 
+																									dbo
+																									.
+																									tipo_diligencia 
+																									pdi_td 
+																									on 
+																									pdi_td
+																									.
+																									tipodiligencia_id 
+																									= 
+																									pdi
+																									.
+																									tipodiligencia_id 
+																										inner 
+																										join 
+																										dbo
+																										.
+																										distritojudicial 
+																										pdi_dj 
+																										on 
+																										pdi_dj
+																										.
+																										distritojudicial_id 
+																										= 
+																										pdi
+																										.
+																										distritojudicial_id 
+																											inner 
+																											join 
+																											dbo
+																											.
+																											diligencia_resultado 
+																											drs 
+																											on 
+																											pdi
+																											.
+																											patrociniodiligencia_id 
+																											= 
+																											drs
+																											.
+																											patrociniodiligencia_id 
+																												inner 
+																												join 
+																												dbo
+																												.
+																												resultado 
+																												drs_r 
+																												on 
+																												drs_r
+																												.
+																												resultado_id 
+																												= 
+																												drs
+																												.
+																												resultado_id 
+																													inner 
+																													join 
+																													dbo
+																													.
+																													origenusuario_diligencia 
+																													pdi_or 
+																													on 
+																													pdi_or
+																													.
+																													origenusuariodiligencia_id 
+																													= 
+																													pdi
+																													.
+																													origenusuariodiligencia_id 
 where
-	(pdi.diligencia_libre ='3') and
+	(cas.vigente ='S') and
+	(pni.vigente ='S') and
 	(pdi.vigente ='S') and
 	(drs.es_activo ='S') and
-	/*(pdi.flg_cierrebd ='C') and
+	(pni.flg_cierrebd ='C') and
+	(pdi.flg_cierrebd ='C') and
 	(drs.flg_cierrebd ='C') and
-        */
-	(pdi.fecha >= ${FECHA_INICIO})</sql>
+	(pni.fecha_apertura >= ${FECHA_INICIO} and pni.fecha_apertura&lt;= ${FECHA_CIERRE})</sql>
     <limit>0</limit>
     <lookup />
     <execute_each_row>N</execute_each_row>
     <variables_active>Y</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
+    <lazy_conversion_active>Y</lazy_conversion_active>
     <cluster_schema />
     <remotesteps>
       <input>
@@ -1025,8 +1623,8 @@ where
       </output>
     </remotesteps>
     <GUI>
-      <xloc>272</xloc>
-      <yloc>208</yloc>
+      <xloc>320</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1045,7 +1643,7 @@ where
     <displayHeader>Y</displayHeader>
     <limitRows>N</limitRows>
     <limitRowsNumber>0</limitRowsNumber>
-    <logmessage>==> Ejecutado la transfomación con fecha de inicio ${FECHA_INICIO}.</logmessage>
+    <logmessage>==> Ejecutado la transfomación para la fecha de cierre ${FECHA_CIERRE}.</logmessage>
     <fields>
       </fields>
     <cluster_schema />
@@ -1056,8 +1654,8 @@ where
       </output>
     </remotesteps>
     <GUI>
-      <xloc>736</xloc>
-      <yloc>208</yloc>
+      <xloc>928</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

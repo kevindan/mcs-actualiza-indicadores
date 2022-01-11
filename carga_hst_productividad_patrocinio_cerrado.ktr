@@ -859,7 +859,7 @@
       <schema_name />
     </partitioning>
     <connection>SybaseMinjusConnection</connection>
-    <sql>select
+    <sql>select 
 	cas.caso_id                                                            as 	CAS_COD,
 	cas_dj.nombre                                                          as 	CAS_DISTRITOJUDICIAL,
 	cas_s.nombre                                                           as 	CAS_SEDE,
@@ -1559,7 +1559,8 @@ where
 	(pni.flg_cierrebd ='C') and
 	(pdi.flg_cierrebd ='C') and
 	(drs.flg_cierrebd ='C') and
-	(pni.fecha_apertura >= ${FECHA_INICIO} and pni.fecha_apertura&lt;= ${FECHA_CIERRE})</sql>
+	(pni.fecha_apertura >= ${FECHA_INICIO} and pni.fecha_apertura&lt;= ${FECHA_CIERRE})
+	--(pni.fecha_apertura >= '2021-01-01' and pni.fecha_apertura&lt;= ${FECHA_CIERRE})</sql>
     <limit>0</limit>
     <lookup />
     <execute_each_row>N</execute_each_row>
