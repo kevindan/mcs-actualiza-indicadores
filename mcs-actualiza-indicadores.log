@@ -5257,3 +5257,24 @@ We failed to initialize at least one step.  Execution can not begin!
 2022-01-10 23:50:54,762 [http-nio-8080-exec-2] DEBUG pe.gob.minjus.mcs.indicadores.service.impl.ConsultaServiceImpl - La transformación carga_hst_patrocinio_delito_cerrado.ktr se ha ejecutado con éxito
 2022-01-11 00:01:20,952 [http-nio-8080-exec-3] ERROR pe.gob.minjus.mcs.indicadores.service.impl.ConsultaServiceImpl - Ocurrió un error al ejecutar la transformación carga_indi_patrocinio_delito_diario.ktr
 2022-01-11 00:06:21,252 [http-nio-8080-exec-5] ERROR pe.gob.minjus.mcs.indicadores.service.impl.ConsultaServiceImpl - Waiting for transformation to be finished interrupted!
+2022-01-16 23:55:55,228 [restartedMain] INFO  pe.gob.minjus.mcs.indicadores.McsActualizaIndicadoresApplication - Starting McsActualizaIndicadoresApplication using Java 1.8.0_281 on Kevin-PC with PID 11408 (C:\Users\Kevin Daniel\Documents\workspace\sts\mcs-actualiza-indicadores\target\classes started by Kevin Daniel in C:\Users\Kevin Daniel\Documents\workspace\sts\mcs-actualiza-indicadores)
+2022-01-16 23:55:55,234 [restartedMain] DEBUG pe.gob.minjus.mcs.indicadores.McsActualizaIndicadoresApplication - Running with Spring Boot v2.5.2, Spring v5.3.8
+2022-01-16 23:55:55,234 [restartedMain] INFO  pe.gob.minjus.mcs.indicadores.McsActualizaIndicadoresApplication - No active profile set, falling back to default profiles: default
+2022-01-16 23:55:57,114 [restartedMain] INFO  springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-01-16 23:55:57,335 [restartedMain] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2022-01-16 23:55:57,353 [restartedMain] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2022-01-16 23:55:57,372 [restartedMain] INFO  springfox.documentation.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2022-01-16 23:55:57,471 [restartedMain] INFO  pe.gob.minjus.mcs.indicadores.McsActualizaIndicadoresApplication - Started McsActualizaIndicadoresApplication in 2.64 seconds (JVM running for 3.507)
+2022-01-16 23:56:12,390 [http-nio-8080-exec-4] INFO  org.pentaho.di.core.vfs.ConcurrentFileSystemManager - Using "C:\Users\KEVIND~1\AppData\Local\Temp\vfs_cache" as temporary files store.
+2022-01-16 23:56:14,796 [http-nio-8080-exec-4] DEBUG pe.gob.minjus.mcs.indicadores.service.impl.ConsultaServiceImpl - La transformación carga_consulta_materia_maestro.ktr se ha ejecutado con éxito
+2022-01-16 23:56:16,682 [http-nio-8080-exec-4] DEBUG pe.gob.minjus.mcs.indicadores.service.impl.ConsultaServiceImpl - La transformación carga_distritojudicial_maestro.ktr se ha ejecutado con éxito
+2022-01-16 23:56:31,769 [http-nio-8080-exec-4] DEBUG pe.gob.minjus.mcs.indicadores.service.impl.ConsultaServiceImpl - La transformación carga_sede_maestro.ktr se ha ejecutado con éxito
+2022-01-16 23:56:35,025 [http-nio-8080-exec-4] DEBUG pe.gob.minjus.mcs.indicadores.service.impl.ConsultaServiceImpl - La transformación carga_tipo_proceso_maestro.ktr se ha ejecutado con éxito
+2022-01-16 23:57:49,491 [restartedMain] INFO  pe.gob.minjus.mcs.indicadores.McsActualizaIndicadoresApplication - Starting McsActualizaIndicadoresApplication using Java 1.8.0_281 on Kevin-PC with PID 11408 (C:\Users\Kevin Daniel\Documents\workspace\sts\mcs-actualiza-indicadores\target\classes started by Kevin Daniel in C:\Users\Kevin Daniel\Documents\workspace\sts\mcs-actualiza-indicadores)
+2022-01-16 23:57:49,492 [restartedMain] DEBUG pe.gob.minjus.mcs.indicadores.McsActualizaIndicadoresApplication - Running with Spring Boot v2.5.2, Spring v5.3.8
+2022-01-16 23:57:49,492 [restartedMain] INFO  pe.gob.minjus.mcs.indicadores.McsActualizaIndicadoresApplication - No active profile set, falling back to default profiles: default
+2022-01-16 23:57:50,072 [restartedMain] INFO  springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-01-16 23:57:50,126 [restartedMain] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2022-01-16 23:57:50,127 [restartedMain] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2022-01-16 23:57:50,130 [restartedMain] INFO  springfox.documentation.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2022-01-16 23:57:50,147 [restartedMain] INFO  pe.gob.minjus.mcs.indicadores.McsActualizaIndicadoresApplication - Started McsActualizaIndicadoresApplication in 0.699 seconds (JVM running for 116.184)

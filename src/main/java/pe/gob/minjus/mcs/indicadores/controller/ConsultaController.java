@@ -66,5 +66,8 @@ public class ConsultaController {
 		return consultaService.ejecutaIndiProductividadPatrocinioDiario();
 	}
 	
-	
+	@GetMapping(value = "/cargaMaestros", produces = "application/json; charset=UTF-8")
+	public GenericResponse ejecutaCargaMaestros() throws Exception{
+		return consultaService.cargaMaestros();
+	}
 }

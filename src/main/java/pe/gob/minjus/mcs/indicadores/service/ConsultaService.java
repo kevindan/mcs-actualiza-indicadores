@@ -19,4 +19,6 @@ public interface ConsultaService {
 	GenericResponse ejecutaHstProductividadPatrocinioCerrado() throws Exception;
 	GenericResponse ejecutaIndiProductividadPatrocinioDiario() throws Exception;
 	
+	GenericResponse cargaMaestros() throws Exception;
+	
 }

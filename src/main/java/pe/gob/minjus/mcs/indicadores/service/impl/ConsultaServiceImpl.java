@@ -1,6 +1,8 @@
 package pe.gob.minjus.mcs.indicadores.service.impl;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.pentaho.di.core.KettleEnvironment;
 import org.pentaho.di.core.exception.KettleException;
@@ -11,7 +13,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import pe.gob.minjus.mcs.indicadores.bean.Error;
 import pe.gob.minjus.mcs.indicadores.bean.GenericBean;
 import pe.gob.minjus.mcs.indicadores.bean.GenericResponse;
 import pe.gob.minjus.mcs.indicadores.bean.PropertiesBean;
@@ -409,6 +413,89 @@ public class ConsultaServiceImpl implements ConsultaService {
 			response.setCode("9001");
 			response.setData(e.getMessage());
 		}		
+		return response;
+	}
+	
+	private GenericBean ejecutaTransformacionMaestro(String nombreTransformacion) throws Exception{
+		GenericBean response = new GenericBean();		
+		String mensaje = "La transformación "+nombreTransformacion+" se ha ejecutado con éxito";		
+		try {
+			
+			KettleEnvironment.init();
+			//TransMeta transMeta = new TransMeta("C:\\Users\\Kevin Daniel\\Documents\\minjus\\Spoon\\transformaciones\\"+nombreTransformacion);
+			TransMeta transMeta = new TransMeta(nombreTransformacion);
+			Trans trans = new Trans(transMeta);
+
+			trans.setLogLevel(LogLevel.DEBUG);
+			trans.execute(null);
+			trans.waitUntilFinished();
+						
+			if(trans.getErrors() > 0) {
+				mensaje = "Ocurrió un error al ejecutar la transformación "+nombreTransformacion;
+				logger.error(mensaje);
+				response.setCode("9999");
+				response.setData(mensaje);
+				return response;
+			}
+		
+			logger.debug(mensaje);
+			response.setCode("0000");
+			response.setData(mensaje);
+					
+		} catch (KettleException e) {
+			logger.error(e.getMessage());
+			response.setCode("9001");
+			response.setData(e.getMessage());
+		}		
+		return response;
+	}
+	
+	
+	
+	@Override
+	public GenericResponse cargaMaestros() throws Exception {
+		GenericResponse response = new GenericResponse();
+		GenericBean responseConsultaMateria;
+		GenericBean responseDistritoJudicial;
+		GenericBean responseSede;
+		GenericBean responseTipoProceso;
+		List<Error> errores = new ArrayList<Error>();
+		try {
+			responseConsultaMateria = this.ejecutaTransformacionMaestro("carga_consulta_materia_maestro.ktr");
+			if(responseConsultaMateria.getCode().equals("9001") || responseConsultaMateria.getCode().equals("9000")) {
+				errores.add(new Error(responseConsultaMateria.getData()));
+			}
+			
+			responseDistritoJudicial = this.ejecutaTransformacionMaestro("carga_distritojudicial_maestro.ktr");
+			if(responseDistritoJudicial.getCode().equals("9001") || responseDistritoJudicial.getCode().equals("9000")) {
+				errores.add(new Error(responseDistritoJudicial.getData()));
+			}
+			
+			responseSede = this.ejecutaTransformacionMaestro("carga_sede_maestro.ktr");
+			if(responseSede.getCode().equals("9001") || responseSede.getCode().equals("9000")) {
+				errores.add(new Error(responseSede.getData()));
+			}
+			
+			responseTipoProceso = this.ejecutaTransformacionMaestro("carga_tipo_proceso_maestro.ktr");
+			if(responseTipoProceso.getCode().equals("9001") || responseTipoProceso.getCode().equals("9000")) {
+				errores.add(new Error(responseTipoProceso.getData()));
+			}
+			
+			if(errores.isEmpty()) {
+				response.setCode("0000");
+				response.setMessage("Todas las tablas maestras han sido cargadas satisfatoriamente");
+			}else {
+				response.setCode("9002");
+				response.setMessage("Hubo errores en la carga de alguno de las tablas maestras");
+				response.setData(errores);
+			}
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			response.setCode("9000");
+			response.setMessage("Hubo un error al ejecutar la carga de maestros");
+			response.setData(errores);
+		}
 		return response;
 	}
 
