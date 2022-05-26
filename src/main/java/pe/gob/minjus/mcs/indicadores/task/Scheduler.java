@@ -48,4 +48,11 @@ public class Scheduler {
 		GenericResponse indiProductividadPatrocinioDiarioResponse = consultaService.ejecutaIndiProductividadPatrocinioDiario();
 		logger.debug(indiProductividadPatrocinioDiarioResponse.toString());
 	}
+	
+	@Scheduled(cron="${ejecucion.maestro}", zone="America/Lima")
+	public void ejecutaMaestro() throws Exception {
+		GenericResponse cargaMaestro = consultaService.cargaMaestros();
+		logger.debug(cargaMaestro.toString());		
+
+	}
 }

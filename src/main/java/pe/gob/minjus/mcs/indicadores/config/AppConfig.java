@@ -14,7 +14,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @ComponentScan({ "pe.gob.minjus.mcs.indicadores.*" })
 @EnableTransactionManagement
-@PropertySource(value = { "classpath:mcs-actualiza-indicadores.properties" })
+//@PropertySource(value = { "classpath:mcs-actualiza-indicadores.properties" })
+@PropertySource(value = { "file:/opt/data/dgdpaj/properties/mcs-actualiza-indicadores.properties" })
 public class AppConfig {
 
 	@Bean

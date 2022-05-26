@@ -8,9 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Component
 @PropertySource(value = { "classpath:mcs-actualiza-indicadores.properties" })
 public class PropertiesBean {
@@ -23,5 +20,48 @@ public class PropertiesBean {
 	
 	@Value("${dia.indiinicio}")
 	private Integer diaIndiInicio;
+	
+	public PropertiesBean() {
+		
+	}
+
+	public PropertiesBean(Integer diaHstInicio, Integer diaHstCierre, Integer diaIndiInicio) {
+	
+		this.diaHstInicio = diaHstInicio;
+		this.diaHstCierre = diaHstCierre;
+		this.diaIndiInicio = diaIndiInicio;
+	}
+
+	public Integer getDiaHstInicio() {
+		return diaHstInicio;
+	}
+
+	public void setDiaHstInicio(Integer diaHstInicio) {
+		this.diaHstInicio = diaHstInicio;
+	}
+
+	public Integer getDiaHstCierre() {
+		return diaHstCierre;
+	}
+
+	public void setDiaHstCierre(Integer diaHstCierre) {
+		this.diaHstCierre = diaHstCierre;
+	}
+
+	public Integer getDiaIndiInicio() {
+		return diaIndiInicio;
+	}
+
+	public void setDiaIndiInicio(Integer diaIndiInicio) {
+		this.diaIndiInicio = diaIndiInicio;
+	}
+
+	@Override
+	public String toString() {
+		return "PropertiesBean [diaHstInicio=" + diaHstInicio + ", diaHstCierre=" + diaHstCierre + ", diaIndiInicio="
+				+ diaIndiInicio + "]";
+	}
+	
+	
 
 }
