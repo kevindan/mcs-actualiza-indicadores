@@ -448,13 +448,13 @@
   </notepads>
   <connection>
     <name>MySQLMinjusConnection</name>
-    <server>190.233.29.90</server>
+    <server>172.17.17.82</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>dgdpaj_indicador</database>
+    <database>minjus_dgdpaj</database>
     <port>3306</port>
-    <username>user_admin</username>
-    <password>Encrypted 2be98afc86aa7f2a5fa4bfd248bc4b5fa</password>
+    <username>wdb_dgdpaj</username>
+    <password>Encrypted 288aa97bb39d38b838135b751ddc5a982</password>
     <servername />
     <data_tablespace />
     <index_tablespace />
@@ -511,7 +511,7 @@
   </connection>
   <connection>
     <name>SybaseMinjusConnection</name>
-    <server>172.17.17.103</server>
+    <server>172.17.17.105</server>
     <type>SYBASE</type>
     <access>Native</access>
     <database>sigaj_spj</database>
@@ -674,8 +674,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
-      <yloc>112</yloc>
+      <xloc>544</xloc>
+      <yloc>96</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -736,7 +736,8 @@ SELECT
 	con_s.distritojudicial_id  AS                                           CON_DISTRITOJUDICIAL_ID,
 	cd.sede_id  AS                                                          CON_SEDE_ID,
 	cdm.consultamateria_id                                                  CON_consultamateria_id,
-	${FECHA_CIERRE} as FECHA_CIERRE
+    ${FECHA_CIERRE} as FECHA_CIERRE
+   -- null AS  FECHA_CIERRE
 from
 	dbo.v_listadopersonal con_d 
 		inner join dbo.consulta_diaria cd 
@@ -753,8 +754,9 @@ from
 							inner join dbo.consulta_materia cm 
 							on cm.consultamateria_id = cdm.consultamateria_id 
 where
-	(cd.fecha BETWEEN ${FECHA_INICIO} AND ${FECHA_CIERRE}) and
-	--(cd.fecha BETWEEN '2021-01-01' AND ${FECHA_CIERRE}) and
+   
+  (cd.fecha BETWEEN ${FECHA_INICIO} AND ${FECHA_CIERRE}) and
+	--- cd.fecha>= '2021-01-01'  and 
 	(cd.vigente ='S') and
 	(cd.flg_cierrebd ='C')</sql>
     <limit>0</limit>

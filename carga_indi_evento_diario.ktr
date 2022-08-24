@@ -443,13 +443,13 @@
   </notepads>
   <connection>
     <name>MySQLMinjusConnection</name>
-    <server>190.233.29.90</server>
+    <server>172.17.17.82</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>dgdpaj_indicador</database>
+    <database>minjus_dgdpaj</database>
     <port>3306</port>
-    <username>user_admin</username>
-    <password>Encrypted 2be98afc86aa7f2a5fa4bfd248bc4b5fa</password>
+    <username>wdb_dgdpaj</username>
+    <password>Encrypted 288aa97bb39d38b838135b751ddc5a982</password>
     <servername />
     <data_tablespace />
     <index_tablespace />
@@ -498,7 +498,7 @@
   </connection>
   <connection>
     <name>SybaseMinjusConnection</name>
-    <server>172.17.17.103</server>
+    <server>172.17.17.105</server>
     <type>SYBASE</type>
     <access>Native</access>
     <database>sigaj_spj</database>
@@ -648,6 +648,26 @@
         <column_name>sede_id</column_name>
         <stream_name>sede_id</stream_name>
       </field>
+      <field>
+        <column_name>TIPO_EVENTO_ID</column_name>
+        <stream_name>TIPO_EVENTO_ID</stream_name>
+      </field>
+      <field>
+        <column_name>FECHA_CIERRE</column_name>
+        <stream_name>FECHA_CIERRE</stream_name>
+      </field>
+      <field>
+        <column_name>fecha_evento</column_name>
+        <stream_name>fecha_evento</stream_name>
+      </field>
+      <field>
+        <column_name>temario_id</column_name>
+        <stream_name>temario_id</stream_name>
+      </field>
+      <field>
+        <column_name>mes_id</column_name>
+        <stream_name>mes_id</stream_name>
+      </field>
     </fields>
     <cluster_schema />
     <remotesteps>
@@ -728,7 +748,12 @@
 	serviciodgdp.nombre     as GRUPO_SERVICIO,
     serviciodgdp.serviciodgdp_id AS GRUPO_SERVICIO_ID,
     distritojudicial.distritojudicial_id AS  distritojudicial_id,
-    sede.sede_id   AS   sede_id
+    sede.sede_id   AS   sede_id,
+    null  AS  FECHA_CIERRE,
+    e.fechaevento AS fecha_evento,
+    e.tipo  AS TIPO_EVENTO_ID,
+    e.temario_id  AS temario_id,
+    month(e.fechaevento)      as mes_id
 	
 from
 	dbo.sede sede 
@@ -742,9 +767,10 @@ from
 					on distritojudicial.distritojudicial_id = e.
 					distritojudicial_id 
 where
-	(e.fechaevento >= ${FECHA_INICIO})
-	--(e.fechaevento >= '2021-01-01')
- and (e.vigente ='S') 
+     (e.vigente ='S')    and 
+ 	 (e.fechaevento >= ${FECHA_INICIO})  
+---- (e.fechaevento >= '2021-01-01')
+  
 	</sql>
     <limit>0</limit>
     <lookup />
@@ -760,7 +786,7 @@ where
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>160</yloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

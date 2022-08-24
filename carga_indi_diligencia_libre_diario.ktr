@@ -443,13 +443,13 @@
   </notepads>
   <connection>
     <name>MySQLMinjusConnection</name>
-    <server>190.233.29.90</server>
+    <server>172.17.17.82</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>dgdpaj_indicador</database>
+    <database>minjus_dgdpaj</database>
     <port>3306</port>
-    <username>user_admin</username>
-    <password>Encrypted 2be98afc86aa7f2a5fa4bfd248bc4b5fa</password>
+    <username>wdb_dgdpaj</username>
+    <password>Encrypted 288aa97bb39d38b838135b751ddc5a982</password>
     <servername />
     <data_tablespace />
     <index_tablespace />
@@ -498,7 +498,7 @@
   </connection>
   <connection>
     <name>SybaseMinjusConnection</name>
-    <server>172.17.17.103</server>
+    <server>172.17.17.105</server>
     <type>SYBASE</type>
     <access>Native</access>
     <database>sigaj_spj</database>
@@ -695,6 +695,10 @@
       <field>
         <column_name>PDI_GRUPOSERVICIO_ID</column_name>
         <stream_name>PDI_GRUPOSERVICIO_ID</stream_name>
+      </field>
+      <field>
+        <column_name>FECHA_CIERRE</column_name>
+        <stream_name>FECHA_CIERRE</stream_name>
       </field>
     </fields>
     <cluster_schema />
@@ -955,8 +959,8 @@
 		THEN '2' 
 		ELSE 'XX' 
 	END                                                                        
-	as PDI_GRUPOSERVICIO_ID
-	 
+	as PDI_GRUPOSERVICIO_ID,
+    null as FECHA_CIERRE	 
 from
 	dbo.diligencia pdi_d 
 		inner join dbo.patrocinio_diligencia pdi 
@@ -1008,10 +1012,9 @@ where
 	(pdi.diligencia_libre ='3') and
 	(pdi.vigente ='S') and
 	(drs.es_activo ='S') and
-	/*(pdi.flg_cierrebd ='C') and
-	(drs.flg_cierrebd ='C') and
-        */
-	(pdi.fecha >= ${FECHA_INICIO})</sql>
+	(pdi.fecha >= ${FECHA_INICIO})
+    ----(pdi.fecha>= '2021-01-01' )
+</sql>
     <limit>0</limit>
     <lookup />
     <execute_each_row>N</execute_each_row>

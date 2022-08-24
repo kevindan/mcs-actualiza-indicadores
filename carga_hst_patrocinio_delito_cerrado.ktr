@@ -448,13 +448,13 @@
   </notepads>
   <connection>
     <name>MySQLMinjusConnection</name>
-    <server>190.233.29.90</server>
+    <server>172.17.17.82</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>dgdpaj_indicador</database>
+    <database>minjus_dgdpaj</database>
     <port>3306</port>
-    <username>user_admin</username>
-    <password>Encrypted 2be98afc86aa7f2a5fa4bfd248bc4b5fa</password>
+    <username>wdb_dgdpaj</username>
+    <password>Encrypted 288aa97bb39d38b838135b751ddc5a982</password>
     <servername />
     <data_tablespace />
     <index_tablespace />
@@ -511,7 +511,7 @@
   </connection>
   <connection>
     <name>SybaseMinjusConnection</name>
-    <server>172.17.17.103</server>
+    <server>172.17.17.105</server>
     <type>SYBASE</type>
     <access>Native</access>
     <database>sigaj_spj</database>
@@ -854,8 +854,12 @@
         <stream_name>PNI_GRUPOSERVICIO_ID</stream_name>
       </field>
       <field>
+        <column_name>FECHA_CIERRE</column_name>
+        <stream_name>FECHA_CIERRE</stream_name>
+      </field>
+      <field>
         <column_name>PNI_fecha_apertura</column_name>
-        <stream_name>fecha_apertura</stream_name>
+        <stream_name>PNI_fecha_apertura</stream_name>
       </field>
     </fields>
     <cluster_schema />
@@ -953,7 +957,7 @@
 		then 'De 90 a 99 anios' 
 		when (datediff(dd,pdo.fecha_nacimiento,pni.fecha_apertura)/365)>=100 
 		then 'De 100 a mas anios' 
-		else 'ERROR' 
+		else 'SIN ESTABLECER' 
 	END                                                                        
 	as PNI_PATROCINADO_RANGOEDAD,
 	pni_sj.nombre                                                          as 	PNI_SITUACIONJURIDICA,
@@ -1217,7 +1221,7 @@
 		THEN '12-DIC' 
 		ELSE 'SIN_MES' 
 	END)as 	DRS_FECHA_MESNOM,
-	pni.fecha_apertura,
+	pni.fecha_apertura AS PNI_fecha_apertura,
 	cas_dj.distritojudicial_id as CAS_distritojudicial_id,
 	cas_s.sede_id as  CAS_sede_id,
 	cas_n.naturaleza_id as CAS_naturaleza_id,
@@ -1383,7 +1387,9 @@
 		THEN '2' 
 		ELSE 'XX' 
 	END                                                                        
-	as PNI_GRUPOSERVICIO_ID
+	as PNI_GRUPOSERVICIO_ID,
+   ${FECHA_CIERRE} as FECHA_CIERRE
+	-----getdate() AS FECHA_CIERRE
 	 
 from
 	dbo.situacion_juridica pdi_sj 
@@ -1608,8 +1614,9 @@ where
 	(drs.es_activo ='S') and
 	(pni.flg_cierrebd ='C') and
 	(pdi.flg_cierrebd ='C') and
-	(drs.flg_cierrebd ='C') and
-	(pni.fecha_apertura >= ${FECHA_INICIO} and pni.fecha_apertura&lt;= ${FECHA_CIERRE})</sql>
+	(drs.flg_cierrebd ='C') AND
+	--- pni.fecha_apertura>='2021-01-01'
+   	(pni.fecha_apertura >= ${FECHA_INICIO} and pni.fecha_apertura&lt;= ${FECHA_CIERRE})</sql>
     <limit>0</limit>
     <lookup />
     <execute_each_row>N</execute_each_row>

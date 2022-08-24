@@ -448,13 +448,13 @@
   </notepads>
   <connection>
     <name>MySQLMinjusConnection</name>
-    <server>190.233.29.90</server>
+    <server>172.17.17.82</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>dgdpaj_indicador</database>
+    <database>minjus_dgdpaj</database>
     <port>3306</port>
-    <username>user_admin</username>
-    <password>Encrypted 2be98afc86aa7f2a5fa4bfd248bc4b5fa</password>
+    <username>wdb_dgdpaj</username>
+    <password>Encrypted 288aa97bb39d38b838135b751ddc5a982</password>
     <servername />
     <data_tablespace />
     <index_tablespace />
@@ -511,7 +511,7 @@
   </connection>
   <connection>
     <name>SybaseMinjusConnection</name>
-    <server>172.17.17.103</server>
+    <server>172.17.17.105</server>
     <type>SYBASE</type>
     <access>Native</access>
     <database>sigaj_spj</database>
@@ -973,7 +973,9 @@
 		ELSE 'XX' 
 	END                                                                        
 	as PDI_GRUPOSERVICIO_ID,
-${FECHA_CIERRE} AS FECHA_CIERRE
+	
+   ${FECHA_CIERRE} AS FECHA_CIERRE
+ --  null as FECHA_CIERRE
 	 
 from
 	dbo.diligencia pdi_d 
@@ -1027,10 +1029,9 @@ where
 	(pdi.vigente ='S') and
 	(drs.es_activo ='S') and
 	(pdi.flg_cierrebd ='C') and
-	(drs.flg_cierrebd ='C') and
-        
-	(pdi.fecha BETWEEN ${FECHA_INICIO} AND ${FECHA_CIERRE})
-	--(pdi.fecha BETWEEN '2021-01-01' AND ${FECHA_CIERRE})</sql>
+	(drs.flg_cierrebd ='C') and 
+    (pdi.fecha BETWEEN ${FECHA_INICIO} AND ${FECHA_CIERRE})
+	-----(pdi.fecha>= '2021-01-01' )</sql>
     <limit>0</limit>
     <lookup />
     <execute_each_row>N</execute_each_row>
