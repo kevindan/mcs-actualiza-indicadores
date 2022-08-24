@@ -381,7 +381,8 @@ public class ConsultaServiceImpl implements ConsultaService {
 			
 			KettleEnvironment.init();
 			//TransMeta transMeta = new TransMeta("C:\\Users\\Kevin Daniel\\Documents\\minjus\\Spoon\\transformaciones\\"+nombreTransformacion);
-			TransMeta transMeta = new TransMeta(nombreTransformacion);
+			TransMeta transMeta = new TransMeta("C:\\transformaciones\\"+nombreTransformacion);
+			//TransMeta transMeta = new TransMeta(nombreTransformacion);
 			Trans trans = new Trans(transMeta);
 			
 			if(tipoOperacion==1) {
@@ -423,7 +424,8 @@ public class ConsultaServiceImpl implements ConsultaService {
 			
 			KettleEnvironment.init();
 			//TransMeta transMeta = new TransMeta("C:\\Users\\Kevin Daniel\\Documents\\minjus\\Spoon\\transformaciones\\"+nombreTransformacion);
-			TransMeta transMeta = new TransMeta(nombreTransformacion);
+			TransMeta transMeta = new TransMeta("C:\\transformaciones\\"+nombreTransformacion);
+			//TransMeta transMeta = new TransMeta(nombreTransformacion);
 			Trans trans = new Trans(transMeta);
 
 			trans.setLogLevel(LogLevel.DEBUG);
