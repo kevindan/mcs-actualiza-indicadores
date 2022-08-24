@@ -9,13 +9,8 @@
         <Console name="ConsoleAppender" target="SYSTEM_OUT" follow="true">
             <PatternLayout pattern="${LOG_PATTERN}"/>
         </Console>
-<<<<<<< HEAD
         <RollingFile name="FileAppender" fileName="/opt/Filesystem/dgdpaj/dgdpaj/log/mcs-actualiza-indicadores.log" 
                  filePattern="mcs-actualiza-indicadores-%d{yyyy-MM-dd}.log">
-=======
-        <RollingFile name="FileAppender" fileName="C:\Users\Kevin Daniel\Documents\minjus\mcs-actualiza-indicadores.log" 
-                 filePattern="synchronizer-%d{yyyy-MM-dd}.log">
->>>>>>> 823e18e6cff58adadfb653dc51bc07c3099c6ccb
             <PatternLayout pattern="${LOG_PATTERN}" />
             <SizeBasedTriggeringPolicy size="10 MB" />
             <DefaultRolloverStrategy max="10"/>

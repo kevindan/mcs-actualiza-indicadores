@@ -380,14 +380,10 @@ public class ConsultaServiceImpl implements ConsultaService {
 		try {
 			
 			KettleEnvironment.init();
-<<<<<<< HEAD
-			
+
 			//TransMeta transMeta = new TransMeta("C:\\transformaciones\\"+nombreTransformacion);
 			TransMeta transMeta = new TransMeta("/opt/Filesystem/dgdpaj/dgdpaj/transformaciones/"+nombreTransformacion);
-=======
-			//TransMeta transMeta = new TransMeta("C:\\Users\\Kevin Daniel\\Documents\\minjus\\Spoon\\transformaciones\\"+nombreTransformacion);
-			TransMeta transMeta = new TransMeta("C:\\transformaciones\\"+nombreTransformacion);
->>>>>>> 823e18e6cff58adadfb653dc51bc07c3099c6ccb
+
 			//TransMeta transMeta = new TransMeta(nombreTransformacion);
 			Trans trans = new Trans(transMeta);
 			
@@ -429,14 +425,11 @@ public class ConsultaServiceImpl implements ConsultaService {
 		try {
 			
 			KettleEnvironment.init();
-<<<<<<< HEAD
+
 		
 			//TransMeta transMeta = new TransMeta("C:\\transformaciones\\"+nombreTransformacion);
 			TransMeta transMeta = new TransMeta("/opt/Filesystem/dgdpaj/dgdpaj/transformaciones/"+nombreTransformacion);
-=======
-			//TransMeta transMeta = new TransMeta("C:\\Users\\Kevin Daniel\\Documents\\minjus\\Spoon\\transformaciones\\"+nombreTransformacion);
-			TransMeta transMeta = new TransMeta("C:\\transformaciones\\"+nombreTransformacion);
->>>>>>> 823e18e6cff58adadfb653dc51bc07c3099c6ccb
+
 			//TransMeta transMeta = new TransMeta(nombreTransformacion);
 			Trans trans = new Trans(transMeta);
 
